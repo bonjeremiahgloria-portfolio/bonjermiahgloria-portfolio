@@ -87,3 +87,68 @@ glow.style.left = e.clientX + "px";
 glow.style.top = e.clientY + "px";
 
 });
+
+/* GRAPHICS GALLERY */
+
+const images = document.querySelectorAll(".graphics-collage img");
+
+const viewer = document.getElementById("galleryViewer");
+
+const viewerImg = document.getElementById("galleryImage");
+
+let currentIndex = 0;
+
+
+function openGallery(index){
+
+currentIndex = index;
+
+viewer.classList.add("active");
+
+viewerImg.src = images[index].src;
+
+}
+
+
+function closeGallery(){
+
+viewer.classList.remove("active");
+
+}
+
+
+function nextImage(){
+
+currentIndex++;
+
+if(currentIndex >= images.length) currentIndex = 0;
+
+viewerImg.src = images[currentIndex].src;
+
+}
+
+
+function prevImage(){
+
+currentIndex--;
+
+if(currentIndex < 0) currentIndex = images.length - 1;
+
+viewerImg.src = images[currentIndex].src;
+
+}
+
+
+/* KEYBOARD CONTROLS */
+
+document.addEventListener("keydown",function(e){
+
+if(!viewer.classList.contains("active")) return;
+
+if(e.key === "ArrowRight") nextImage();
+
+if(e.key === "ArrowLeft") prevImage();
+
+if(e.key === "Escape") closeGallery();
+
+});
