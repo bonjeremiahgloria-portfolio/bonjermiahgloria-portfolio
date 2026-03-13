@@ -202,33 +202,36 @@ border-radius:12px;
 box-shadow:0 20px 50px rgba(0,0,0,.7);
 }
 
-/* GRAPHICS COLLAGE */
+/* GRAPHICS GRID (INSTAGRAM STYLE) */
 
 .graphics-collage{
 
 margin-top:40px;
 
-column-count:3;
+display:grid;
 
-column-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+justify-items:center;
 
 }
 
 .graphics-collage img{
 
-width:100%;
+width:260px;
+height:260px;
 
-margin-bottom:25px;
+object-fit:cover;
 
-border-radius:12px;
+border-radius:14px;
 
-box-shadow:0 20px 50px rgba(0,0,0,.6);
+cursor:pointer;
 
 transition:.35s;
 
-break-inside:avoid;
-
-cursor:pointer;
+box-shadow:0 20px 50px rgba(0,0,0,.6);
 
 }
 
@@ -240,24 +243,118 @@ box-shadow:0 30px 80px rgba(212,175,55,.35);
 
 }
 
-/* RESPONSIVE */
 
-@media(max-width:1000px){
+/* FULLSCREEN GALLERY */
 
-.graphics-collage{
-column-count:2;
+.gallery-viewer{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.95);
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.4s;
+
+z-index:9999;
+
+}
+
+.gallery-viewer.active{
+
+opacity:1;
+
+pointer-events:auto;
+
+}
+
+.gallery-viewer img{
+
+max-width:80%;
+max-height:80%;
+
+border-radius:10px;
+
+box-shadow:0 30px 100px rgba(0,0,0,.8);
+
+animation:zoomIn .4s ease;
+
+}
+
+.gallery-close{
+
+position:absolute;
+
+top:40px;
+right:60px;
+
+font-size:40px;
+
+cursor:pointer;
+
+color:white;
+
+}
+
+.gallery-nav{
+
+position:absolute;
+
+bottom:60px;
+
+display:flex;
+
+gap:30px;
+
+}
+
+.gallery-nav button{
+
+background:#d4af37;
+
+border:none;
+
+font-size:28px;
+
+padding:10px 18px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+color:#111;
+
+}
+
+
+/* ZOOM ANIMATION */
+
+@keyframes zoomIn{
+
+from{
+transform:scale(.7);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
 }
 
 }
-
-@media(max-width:600px){
-
-.graphics-collage{
-column-count:1;
-}
-
-}
-
 .review-card{
 margin:20px auto;
 max-width:600px;
@@ -299,4 +396,5 @@ color:#d4af37;
 50%{transform:translate(40px,30px);}
 100%{transform:translate(0,0);}
 }
+
 
